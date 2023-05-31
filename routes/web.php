@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +17,9 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
-    $posts = Post::all();
     
     return view('posts', [
-        'posts' => $posts
+        'posts' => Post::all()
     ]);
 });
 
