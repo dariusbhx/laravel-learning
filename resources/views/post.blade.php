@@ -1,18 +1,12 @@
-<!doctype html>
-
-<title>My Blog</title>
-
-<link rel="stylesheet" href="/app.css">
-
-<body>
+<x-layout>
     <article>
-            <h1><?= $post->title; ?></h1>
-            <p>
-                <a href="3"><?= $post->category->name; ?></a>
-            </p>
-            <div><?= $post->excerpt; ?></div>
-            
-        </article><br>
+        <h1>{{$post->title;}}</h1>
+        <p>
+        By <a href="\">{{ $post->user->name }}</a> in <a href="categories/{{$post->category->slug}}">{{$post->category->name;}}</a>
+        </p>
+        <div>{{$post->excerpt;}}</div>
+
+    </article><br>
 
     <a href="/">Go back</a>
-</body>
+</x-layout>
