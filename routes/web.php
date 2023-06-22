@@ -5,9 +5,6 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +25,7 @@ Route::get('/', function () {
         'posts' => Post::latest()->with(['category', 'author'])->get(),
         'categories' => Category::all(),
     ]);
-});
+})->name('home');
 
 Route::get('posts/{post:slug}', function (Post $post) {
     return view('post', [
