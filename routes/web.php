@@ -18,11 +18,14 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    DB::listen(function ($query) {
-        logger($query->sql);
-    });
+    $posts = Post::latest();
+    if(request('search')) {
+        $posts->where('title', 'like', '%' . request('search') . '%')
+        ->orWhere('body', 'like', '%' . request('search') . '%');
+
+    }
     return view('posts', [
-        'posts' => Post::latest()->with(['category', 'author'])->get(),
+        'posts' => $posts->get(),
         'categories' => Category::all(),
     ]);
 })->name('home');
